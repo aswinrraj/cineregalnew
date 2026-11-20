@@ -1,0 +1,16 @@
+{
+  "name": "cineregal-mern-stack",
+  "version": "1.0.0",
+  "description": "CinéRegal - Full Stack MERN Cinema Discovery & Booking Platform",
+  "scripts": {
+    "start:backend": "npm --prefix backend start",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev": "node scripts/dev.cjs",
+    "seed:backend": "npm --prefix backend run seed",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "keywords": ["mern", "express", "mongodb", "react", "cinema"],
+  "author": "",
+  "license": "ISC"
+}

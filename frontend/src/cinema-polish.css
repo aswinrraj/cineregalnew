@@ -1,0 +1,711 @@
+/* Shared finishing layer for the customer experience and admin workspace. */
+:root {
+  --brand-cream: #f4f7fb;
+  --brand-coral: #c6a467;
+  --brand-coral-ink: #8a6a36;
+  --brand-surface: #ffffff;
+  --brand-line: #dce5ef;
+  --blue: #315f89;
+  --ice: #edf3f9;
+  --gold: #c6a467;
+  --journal-paper: #f4f7fb;
+  --journal-paper-light: #ffffff;
+  --journal-coral: #c6a467;
+  --surface-raised: #ffffff;
+  --surface-soft: #edf3f9;
+  --surface-border: rgba(20, 33, 61, .13);
+  --surface-shadow: 0 12px 30px rgba(20, 33, 61, .075);
+  --surface-shadow-hover: 0 18px 42px rgba(20, 33, 61, .13);
+  --radius-card: 9px;
+  --radius-control: 5px;
+  --motion-quick: 150ms;
+  --motion-ui: 220ms;
+}
+
+html { scroll-padding-top: 82px; }
+body { background: #f4f7fb; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+
+.app-shell {
+  background: #f4f7fb;
+  color: #14213d;
+}
+
+.app-shell .topbar {
+  border-bottom: 1px solid rgba(244, 237, 224, .12);
+  background: rgba(20, 33, 61, .96);
+  box-shadow: 0 8px 26px rgba(9, 17, 33, .12);
+  backdrop-filter: blur(16px);
+}
+
+.app-shell .brand-mark {
+  transition: color var(--motion-ui), border-color var(--motion-ui), transform var(--motion-ui);
+}
+
+.app-shell .brand:hover .brand-mark {
+  border-color: var(--brand-coral);
+  color: var(--brand-cream);
+  transform: rotate(-5deg);
+}
+
+.app-shell .nav-link {
+  transition: color var(--motion-quick), background var(--motion-quick);
+}
+
+.app-shell .nav-link.selected {
+  color: var(--brand-cream);
+}
+
+.app-shell .nav-link.selected::after {
+  height: 2px;
+  background: var(--brand-coral);
+}
+
+.app-shell .profile-button:hover,
+.app-shell .icon-btn:hover {
+  color: var(--brand-cream);
+}
+
+.app-shell .content-section {
+  padding-top: clamp(48px, 6vw, 76px);
+  padding-bottom: clamp(50px, 6vw, 78px);
+}
+
+.app-shell .section-heading {
+  align-items: end;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.app-shell .section-heading h2 {
+  font-size: 33px;
+  letter-spacing: -.035em;
+}
+
+.app-shell .movie-filters {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding-bottom: 12px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.app-shell .movie-filters button {
+  flex: 0 0 auto;
+  min-height: 35px;
+  padding: 0 13px;
+  border: 1px solid rgba(20, 33, 61, .16);
+  border-radius: 999px;
+  background: rgba(255, 250, 241, .68);
+  color: rgba(20, 33, 61, .7);
+  transition: background var(--motion-quick), color var(--motion-quick), border-color var(--motion-quick), transform var(--motion-quick);
+}
+
+.app-shell .movie-filters button:hover { transform: translateY(-1px); }
+.app-shell .movie-filters button.active {
+  border-color: var(--brand-navy);
+  background: var(--brand-navy);
+  color: var(--brand-cream);
+}
+
+.app-shell .discovery-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.app-shell .discovery-controls .movie-filters { flex: 1 1 auto; min-width: 0; margin-bottom: 0; }
+.app-shell .discovery-selects { display: flex; flex: 0 0 auto; gap: 8px; }
+.app-shell .discovery-selects label { display: flex; align-items: center; gap: 7px; color: #73849a; font-size: 10px; }
+.app-shell .discovery-selects select {
+  min-width: 112px;
+  height: 35px;
+  padding: 0 28px 0 10px;
+  border: 1px solid rgba(20, 33, 61, .16);
+  background: #fff;
+  color: #263e5c;
+  font-size: 11px;
+}
+.app-shell .discovery-results {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 26px;
+  margin: 0 0 12px;
+  color: #8290a0;
+  font-size: 10px;
+}
+.app-shell .discovery-results button {
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: #315f89;
+  font-size: 10px;
+  font-weight: 600;
+}
+.app-shell .discovery-results button:hover { color: #8a6a36; }
+
+.app-shell .movie-card {
+  align-self: start;
+  min-width: 0;
+  transition: transform var(--motion-ui) var(--motion-ease), filter var(--motion-ui);
+}
+
+.app-shell .poster-wrap {
+  border-radius: 6px;
+  background: #e5dccb;
+  box-shadow: 0 10px 24px rgba(20, 33, 61, .12);
+  transition: box-shadow var(--motion-ui), transform var(--motion-ui);
+}
+
+.app-shell .movie-card:hover .poster-wrap,
+.app-shell .movie-card:focus-within .poster-wrap {
+  box-shadow: var(--surface-shadow-hover);
+}
+
+.app-shell .movie-info {
+  align-items: center;
+  gap: 12px;
+  padding: 13px 0 8px;
+}
+
+.app-shell .movie-info-copy {
+  display: block;
+  min-width: 0;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.app-shell .movie-info-copy h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color var(--motion-quick);
+}
+
+.app-shell .movie-info-copy:hover h3,
+.app-shell .movie-info-copy:focus-visible h3 { color: #8a6a36; }
+
+.app-shell .mini-book {
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: rgba(255, 250, 241, .55);
+}
+
+.app-shell .watchlist-panel,
+.app-shell .critic-panel {
+  min-height: 220px;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-card);
+  background: var(--surface-raised);
+  box-shadow: var(--surface-shadow);
+  transition: transform var(--motion-ui), box-shadow var(--motion-ui);
+}
+
+.app-shell .watchlist-panel:hover,
+.app-shell .critic-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--surface-shadow-hover);
+}
+
+.app-shell .page-wrap {
+  padding-top: clamp(42px, 5.7vw, 76px);
+}
+
+.app-shell .page-wrap > h1,
+.app-shell .page-title-row h1,
+.app-shell .feedback-wrap h1 {
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+
+.app-shell .details-hero {
+  min-height: clamp(480px, 64vh, 650px);
+  border-bottom: 1px solid rgba(244, 237, 224, .17);
+}
+
+.app-shell .details-side,
+.app-shell .theater-card,
+.app-shell .seat-card,
+.app-shell .review-card,
+.app-shell .write-review-card,
+.app-shell .settings-nav,
+.app-shell .settings-card,
+.app-shell .checkout-form,
+.app-shell .order-summary,
+.app-shell .feedback-card,
+.app-shell .success-card,
+.app-shell .history-card {
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-card);
+  background: var(--surface-raised);
+  box-shadow: 0 8px 24px rgba(20, 33, 61, .045);
+}
+
+.app-shell .theater-card {
+  border-left: 3px solid transparent;
+  transition: border-color var(--motion-ui), background var(--motion-ui), transform var(--motion-ui), box-shadow var(--motion-ui);
+}
+
+.app-shell .theater-card:hover { transform: translateY(-2px); }
+.app-shell .theater-card.active-theatre {
+  border-left-color: var(--brand-coral);
+  box-shadow: var(--surface-shadow);
+}
+
+.app-shell .seat-card { padding: clamp(18px, 2.4vw, 27px); }
+.app-shell .showtime,
+.app-shell .theater-select,
+.app-shell .payment-tabs button,
+.app-shell .booking-filter-control,
+.app-shell .booking-city,
+.app-shell .booking-filters label {
+  border-radius: var(--radius-control);
+}
+
+.app-shell .showtime {
+  transition: border-color var(--motion-quick), background var(--motion-quick), transform var(--motion-quick);
+}
+
+.app-shell .showtime:hover { transform: translateY(-1px); }
+.app-shell .showtime.selected-showtime { box-shadow: inset 0 0 0 1px var(--brand-coral); }
+
+.app-shell .review-card,
+.app-shell .details-review {
+  transition: transform var(--motion-ui), border-color var(--motion-ui), box-shadow var(--motion-ui);
+}
+
+.app-shell .review-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(20, 33, 61, .24);
+  box-shadow: var(--surface-shadow);
+}
+
+.app-shell .settings-card { padding: clamp(18px, 2.5vw, 26px); }
+.app-shell .settings-nav { padding: 15px; }
+.app-shell .settings-nav button { border-radius: 6px; }
+.app-shell .settings-nav button.settings-active { background: var(--surface-soft); }
+
+.app-shell input:not([type='checkbox']):not([type='radio']),
+.app-shell select,
+.app-shell textarea {
+  border-radius: var(--radius-control);
+  transition: border-color var(--motion-quick), box-shadow var(--motion-quick), background var(--motion-quick);
+}
+
+.app-shell input:not([type='checkbox']):not([type='radio']):focus,
+.app-shell select:focus,
+.app-shell textarea:focus {
+  border-color: rgba(49, 95, 137, .66);
+  box-shadow: 0 0 0 3px rgba(49, 95, 137, .12);
+}
+
+.app-shell .button,
+.app-shell .button-blue,
+.app-shell .button-light,
+.app-shell .button-glass {
+  border-radius: var(--radius-control);
+  transition: transform var(--motion-quick), box-shadow var(--motion-quick), background var(--motion-quick), border-color var(--motion-quick);
+}
+
+.app-shell .button-blue { box-shadow: 0 5px 16px rgba(20, 33, 61, .13); }
+.app-shell .button-blue:hover:not(:disabled) { box-shadow: 0 8px 22px rgba(20, 33, 61, .22); }
+
+.app-shell .footer {
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  background: #101b31;
+}
+
+.app-shell .toast {
+  max-width: min(520px, calc(100vw - 28px));
+  border: 1px solid rgba(244, 237, 224, .14);
+  border-radius: 999px;
+  box-shadow: 0 14px 36px rgba(9, 17, 33, .28);
+}
+
+.admin-app .admin-sidebar { box-shadow: 10px 0 32px rgba(20, 33, 61, .09); }
+.admin-app .admin-topbar { box-shadow: 0 8px 26px rgba(20, 33, 61, .06); }
+.admin-app .admin-stat-card,
+.admin-app .admin-table-frame,
+.admin-app .admin-state-card,
+.admin-app .admin-filter-panel,
+.admin-app .admin-report-card {
+  border-radius: 9px;
+  box-shadow: 0 8px 24px rgba(20, 33, 61, .055);
+}
+
+.admin-app .admin-button { border-radius: 5px; }
+.admin-app .admin-table th:first-child { border-radius: 7px 0 0 7px; }
+.admin-app .admin-table th:last-child { border-radius: 0 7px 7px 0; }
+.admin-app p,
+.admin-app label,
+.admin-app td,
+.admin-app th,
+.admin-app input,
+.admin-app select,
+.admin-app textarea,
+.admin-app .admin-button { font-size: 12px; }
+
+/* Calmer, more legible composition for the featured film carousel. */
+.hero.cinema-hero {
+  grid-template-columns: minmax(0, 1.3fr) minmax(180px, .42fr);
+  gap: clamp(28px, 5vw, 72px);
+  min-height: clamp(500px, 68vh, 650px);
+  padding-top: clamp(42px, 5vw, 66px);
+  padding-bottom: 92px;
+  background: #10223e;
+}
+
+.hero.cinema-hero::before {
+  background: linear-gradient(90deg, rgba(11, 28, 51, .94) 0%, rgba(14, 35, 62, .79) 42%, rgba(14, 35, 62, .32) 76%, rgba(14, 35, 62, .4) 100%);
+}
+
+.hero.cinema-hero .hero-backdrop { background-position: center 42%; }
+.hero.cinema-hero .cinema-hero-copy { max-width: 650px; }
+.cinema-hero .hero-edition-line { margin-bottom: clamp(17px, 2.6vw, 30px); font-size: 9px; }
+.hero.cinema-hero h1 {
+  max-width: 640px;
+  margin-bottom: 16px;
+  font-size: clamp(32px, 3.8vw, 48px);
+  line-height: 1.02;
+  letter-spacing: -.04em;
+}
+.hero.cinema-hero .cinema-hero-copy h1 { font-size: clamp(32px, 3.8vw, 48px); }
+.hero.cinema-hero .hero-meta { gap: 7px; font-size: 10px; }
+.hero.cinema-hero .hero-meta > span:not(.rating):not(.tag) { padding: 6px 9px; }
+.hero.cinema-hero .hero-description { max-width: 470px; margin: 15px 0 19px; font-size: 12px; line-height: 1.7; }
+.hero.cinema-hero .hero-buttons { gap: 8px 18px; }
+.hero.cinema-hero .hero-buttons .button-blue { min-height: 43px; padding: 0 16px; }
+.hero-poster-panel { width: min(100%, 218px); }
+.hero-poster-frame { transform: none; box-shadow: 0 20px 46px rgba(5, 12, 25, .42), 0 0 0 5px rgba(244, 247, 251, .07); }
+.hero-poster-caption { gap: 4px; margin-top: 14px; }
+.hero-poster-caption > b { font-size: 16px; }
+.hero-poster-caption > small { font-size: 8px; }
+
+@media (max-width: 900px) and (min-width: 681px) {
+  .hero.cinema-hero { grid-template-columns: minmax(0, 1fr) 176px; min-height: 550px; gap: 28px; }
+  .hero-poster-panel { width: 170px; }
+  .hero.cinema-hero h1 { font-size: clamp(38px, 5.8vw, 55px); }
+}
+
+@media (max-width: 680px) {
+  .app-shell .section-heading { align-items: start; }
+  .app-shell .watchlist-panel,
+  .app-shell .critic-panel { min-height: auto; }
+  .app-shell .settings-card { padding: 18px; }
+  .app-shell .discovery-controls { align-items: stretch; flex-direction: column; gap: 2px; }
+  .app-shell .discovery-selects { justify-content: flex-end; }
+  .app-shell .discovery-selects select { min-width: 102px; }
+  .hero.cinema-hero { min-height: 620px; padding: 170px 21px 82px; }
+  .hero-poster-panel { top: 22px; right: 23px; width: 84px; }
+  .hero-poster-frame { box-shadow: 0 10px 24px rgba(5, 12, 25, .42), 0 0 0 3px rgba(244, 247, 251, .08); }
+  .hero.cinema-hero .cinema-hero-copy h1 { max-width: 100%; font-size: clamp(30px, 7.6vw, 38px); line-height: 1.05; }
+  .hero.cinema-hero .hero-description { max-width: 38em; font-size: 11px; }
+  .cinema-hero .hero-edition-line { margin-bottom: 14px; font-size: 8px; }
+}
+
+@media (max-width: 390px) {
+  .hero.cinema-hero { min-height: 640px; padding-top: 158px; }
+  .hero-poster-panel { width: 74px; }
+  .hero.cinema-hero .cinema-hero-copy h1 { font-size: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .movie-card,
+  .app-shell .theater-card,
+  .app-shell .watchlist-panel,
+  .app-shell .critic-panel,
+  .app-shell .review-card { transition: none; }
+  .app-shell .watchlist-panel:hover,
+  .app-shell .critic-panel:hover,
+  .app-shell .theater-card:hover,
+  .app-shell .review-card:hover { transform: none; }
+}
+
+/* A complete, responsive booking path. */
+.app-shell .booking-page { max-width: 1400px; }
+.app-shell .booking-film-banner {
+  position: relative;
+  display: flex;
+  min-height: 188px;
+  align-items: center;
+  gap: 22px;
+  overflow: hidden;
+  margin: 0 0 30px;
+  padding: 22px 30px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 9px;
+  background-color: #14213d;
+  background-position: center 42%;
+  background-size: cover;
+  color: #fff;
+  box-shadow: 0 16px 36px rgba(20,33,61,.16);
+}
+.app-shell .booking-film-banner::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(9,24,45,.94), rgba(12,31,55,.83) 48%, rgba(12,31,55,.44));
+  content: '';
+}
+.app-shell .booking-film-poster,
+.app-shell .booking-film-copy,
+.app-shell .booking-film-note { position: relative; z-index: 1; }
+.app-shell .booking-film-poster {
+  flex: 0 0 88px;
+  width: 88px;
+  height: 132px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.56);
+  border-radius: 4px;
+  background: #10213b;
+  box-shadow: 0 10px 24px rgba(0,0,0,.28);
+}
+.app-shell .booking-film-poster img,
+.app-shell .booking-film-poster .poster-image-fallback { display: block; width: 100%; height: 100%; object-fit: cover; }
+.app-shell .booking-film-copy { min-width: 0; }
+.app-shell .booking-film-kicker { display: flex; align-items: center; gap: 7px; color: #e3c98f; font-size: 9px; letter-spacing: .15em; }
+.app-shell .booking-film-copy h2 { margin: 9px 0 5px; color: #fff; font: 500 clamp(23px, 3vw, 34px)/1.1 'Playfair Display', Georgia, serif; }
+.app-shell .booking-film-copy p { margin: 0 0 9px; color: rgba(255,255,255,.76); font-size: 11px; }
+.app-shell .booking-film-rating { display: inline-flex; align-items: center; gap: 5px; color: #e7ca89; font-size: 11px; }
+.app-shell .booking-film-rating i { margin-left: 3px; color: rgba(255,255,255,.6); font-size: 9px; font-style: normal; }
+.app-shell .booking-film-note { margin-left: auto; padding-left: 20px; border-left: 1px solid rgba(255,255,255,.25); color: rgba(255,255,255,.76); font-size: 10px; line-height: 1.6; text-align: right; }
+.app-shell .booking-title-row { align-items: center; margin-bottom: 17px; }
+.app-shell .booking-heading h1 { margin: 5px 0 4px; font-size: clamp(30px, 4vw, 42px); }
+.app-shell .booking-city { min-width: 195px; border-color: var(--surface-border); border-radius: 6px; background: rgba(255,255,255,.92); }
+.app-shell .booking-city svg { color: #315f89; }
+.app-shell .booking-steps { margin-bottom: 17px; border: 0; gap: 9px; }
+.app-shell .booking-step { min-height: 43px; padding: 0 12px; border: 1px solid var(--surface-border); border-radius: 6px; background: rgba(255,255,255,.72); font-size: 11px; }
+.app-shell .booking-step:first-child { padding-left: 12px; }
+.app-shell .booking-step.is-complete,
+.app-shell .booking-step.is-current { border-color: rgba(49,95,137,.25); background: #fff; }
+.app-shell .booking-step.is-complete > span,
+.app-shell .booking-step.is-current > span { color: #a78349; }
+.app-shell .booking-date-strip { display: flex; align-items: center; gap: 18px; margin: 0 0 12px; padding: 12px 15px; border: 1px solid var(--surface-border); border-radius: 7px; background: #fff; }
+.app-shell .booking-date-label { display: flex; flex: 0 0 128px; align-items: center; gap: 8px; color: #203b5b; font-size: 11px; font-weight: 600; }
+.app-shell .booking-date-label svg { color: #a78349; }
+.app-shell .booking-date-options { display: grid; flex: 1; grid-template-columns: repeat(7,minmax(50px,1fr)); gap: 7px; }
+.app-shell .booking-date-option { display: grid; min-height: 60px; place-content: center; gap: 2px; padding: 6px 4px; border: 1px solid transparent; border-radius: 5px; background: #f5f8fb; color: #728096; transition: background var(--motion-quick),color var(--motion-quick),border-color var(--motion-quick),transform var(--motion-quick); }
+.app-shell .booking-date-option:hover { transform: translateY(-1px); border-color: #cbd8e5; }
+.app-shell .booking-date-option b { color: #203b5b; font-size: 16px; font-weight: 600; }
+.app-shell .booking-date-option small { font-size: 9px; }
+.app-shell .booking-date-option.active { border-color: #274e77; background: #173454; color: #d9e4ee; }
+.app-shell .booking-date-option.active b { color: #fff; }
+.app-shell .booking-filters { grid-template-columns: minmax(180px,1fr) minmax(160px,.8fr) auto; gap: 10px; margin-bottom: 21px; padding: 12px 14px; border: 1px solid var(--surface-border); border-radius: 7px; background: rgba(255,255,255,.72); }
+.app-shell .booking-filter-control { border-color: #dce5ef; border-radius: 5px; background: #fff; }
+.app-shell .booking-filter-control svg { color: #315f89; }
+.app-shell .booking-filter-count { color: #7b899a; font-size: 10px; }
+.app-shell .booking-layout { grid-template-columns: minmax(0,1.08fr) minmax(360px,.92fr); align-items: start; gap: 20px; }
+.app-shell .theater-list { min-width: 0; }
+.app-shell .list-head { align-items: center; margin-bottom: 13px; padding: 0 2px 11px; border-color: var(--surface-border); }
+.app-shell .list-head h2 { margin-bottom: 0; color: #172e4b; font-size: 23px; }
+.app-shell .list-head > span { padding: 6px 9px; border-radius: 999px; background: #edf3f9; color: #526a84; }
+.app-shell .booking-step-kicker { color: #9a7845; font-size: 9px; }
+.app-shell .theater-card { margin-bottom: 11px; padding: 17px; border: 1px solid var(--surface-border); border-left: 3px solid transparent; border-radius: 7px; background: #fff; box-shadow: 0 5px 16px rgba(20,33,61,.035); }
+.app-shell .theater-card.active-theatre { border-color: rgba(49,95,137,.27); border-left-color: #315f89; background: #fff; box-shadow: 0 10px 24px rgba(20,33,61,.075); }
+.app-shell .theater-top h3 { margin: 0 0 5px; color: #203b5b; font-size: 17px; }
+.app-shell .theater-top p { display: flex; align-items: center; gap: 5px; margin: 0; color: #7b8998; font-size: 10px; }
+.app-shell .theater-top p svg { color: #9a7845; }
+.app-shell .theater-format { border-radius: 4px; background: #edf3f9; color: #315f89; font-size: 9px; letter-spacing: .06em; }
+.app-shell .theater-select { min-height: 32px; padding: 0 11px; border: 1px solid #ccd9e6; border-radius: 4px; background: #fff; color: #315f89; font-size: 10px; }
+.app-shell .active-theatre .theater-select { border-color: #173454; background: #173454; color: #fff; }
+.app-shell .showtimes { grid-template-columns: repeat(auto-fit,minmax(96px,1fr)); gap: 7px; margin-top: 13px; }
+.app-shell .showtime { min-height: 49px; border: 1px solid #d9e4ed; border-radius: 5px; background: #f9fbfd; color: #294865; }
+.app-shell .showtime b { font-size: 11px; }
+.app-shell .showtime small { color: #7f8d9d; font-size: 9px; }
+.app-shell .showtime.selected-showtime { border-color: #315f89; background: #edf4fa; box-shadow: inset 0 0 0 1px #315f89; }
+.app-shell .theater-amenities { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.app-shell .theater-amenities span { display: inline-flex; align-items: center; gap: 4px; padding: 4px 7px; border: 1px solid #e4eaf0; border-radius: 999px; color: #758496; font-size: 9px; }
+.app-shell .seat-card { top: 18px; padding: 20px; border: 1px solid var(--surface-border); border-top: 3px solid #173454; border-radius: 8px; box-shadow: 0 10px 28px rgba(20,33,61,.07); }
+.app-shell .seat-head { padding-bottom: 13px; }
+.app-shell .seat-head h2 { margin: 5px 0 8px; color: #172e4b; font-size: 23px; }
+.app-shell .seat-selection-context { gap: 3px; }
+.app-shell .seat-selection-context b { color: #203b5b; font-size: 11px; }
+.app-shell .seat-selection-context span { color: #7b8998; font-size: 10px; }
+.app-shell .layout-picker { margin: 13px 0 8px; }
+.app-shell .layout-picker select { min-height: 36px; border-color: #dce5ef; border-radius: 5px; background: #fff; }
+.app-shell .seat-legend { justify-content: flex-start; gap: 8px 15px; color: #718196; font-size: 9px; }
+.app-shell .screen-area { margin: 10px 0 8px; }
+.app-shell .screen-area small { color: #8291a1; font-size: 8px; }
+.app-shell .seat-map { max-width: 100%; margin: 8px auto 13px; padding: 12px 8px; border: 1px solid #e4eaf0; border-radius: 7px; background: linear-gradient(180deg,#f8fafc,#fff); }
+.app-shell .seat-row { gap: clamp(3px,.65vw,7px); margin: 7px 0; }
+.app-shell .seat { min-height: 20px; border-radius: 4px 4px 2px 2px; }
+.app-shell .seat-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 -2px -2px; padding: 13px 0 0; border-top: 1px solid var(--surface-border); }
+.app-shell .seat-foot > span { color: #52677f; font-size: 10px; }
+.app-shell .seat-foot .button { min-height: 40px; padding: 0 13px; outline: none; border-radius: 5px; font-size: 11px; }
+.app-shell .checkout-page > h1 { margin-top: 6px; color: #172e4b; font-size: clamp(32px,4vw,44px); }
+.app-shell .checkout-layout { grid-template-columns: minmax(0,1.1fr) minmax(300px,.9fr); gap: 18px; }
+.app-shell .checkout-form,
+.app-shell .order-summary { border: 1px solid var(--surface-border); border-radius: 8px; box-shadow: var(--surface-shadow); }
+.app-shell .checkout-form { padding: 23px; }
+.app-shell .order-summary { position: sticky; top: 18px; padding: 22px; background: #fff; }
+.app-shell .order-summary h2 { color: #203b5b; font-size: 21px; }
+.app-shell .order-summary > p { color: #7c8998; font-size: 11px; line-height: 1.6; }
+.app-shell .checkout-form h2 { color: #203b5b; font-size: 22px; }
+.app-shell .payment-tabs button { min-height: 38px; border-radius: 5px; font-size: 11px; }
+.app-shell .payment-tabs button.active { border-color: #315f89; background: #edf4fa; color: #234b73; }
+.app-shell .checkout-form .button { min-height: 45px; border-radius: 5px; font-size: 12px; }
+.app-shell .summary-line { font-size: 11px; }
+.app-shell .summary-line.total { font-size: 13px; }
+.app-shell .summary-line.total b { color: #173454; font-size: 18px; }
+.app-shell .checkout-success { padding: 30px; border: 1px solid var(--surface-border); border-radius: 9px; background: #fff; box-shadow: var(--surface-shadow); }
+
+@media (max-width: 900px) {
+  .app-shell .booking-layout { grid-template-columns: minmax(0,1fr); }
+  .app-shell .seat-card { position: static; }
+  .app-shell .checkout-layout { grid-template-columns: minmax(0,1fr); }
+  .app-shell .order-summary { position: static; grid-row: 1; }
+}
+@media (max-width: 680px) {
+  .app-shell .booking-film-banner { min-height: 150px; gap: 13px; margin-bottom: 22px; padding: 14px; }
+  .app-shell .booking-film-poster { flex-basis: 72px; width: 72px; height: 108px; }
+  .app-shell .booking-film-copy h2 { font-size: 22px; }
+  .app-shell .booking-film-copy p { max-width: 27ch; font-size: 9px; line-height: 1.5; }
+  .app-shell .booking-film-kicker { font-size: 7px; }
+  .app-shell .booking-film-note { display: none; }
+  .app-shell .booking-date-strip { align-items: stretch; flex-direction: column; gap: 9px; padding: 11px; }
+  .app-shell .booking-date-options { grid-template-columns: repeat(7,minmax(0,1fr)); gap: 4px; }
+  .app-shell .booking-date-option { min-height: 56px; }
+  .app-shell .booking-filters { grid-template-columns: minmax(0,1fr); }
+  .app-shell .booking-filter-count { margin: 2px 0 0; }
+  .app-shell .booking-steps { gap: 5px; }
+  .app-shell .booking-step { justify-content: center; min-height: 40px; gap: 6px; padding: 0 5px; font-size: 9px; }
+  .app-shell .booking-step:first-child { padding-left: 5px; }
+  .app-shell .theater-card { padding: 13px; }
+  .app-shell .theater-top h3 { font-size: 15px; }
+  .app-shell .showtimes { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .app-shell .seat-card { padding: 15px 10px; }
+  .app-shell .seat-row { gap: 3px; }
+  .app-shell .seat-foot { align-items: stretch; flex-direction: column; }
+  .app-shell .seat-foot .button { width: 100%; }
+  .app-shell .checkout-form,
+  .app-shell .order-summary { padding: 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .booking-date-option { transition: none; }
+  .app-shell .booking-date-option:hover { transform: none; }
+}
+
+/* Wide, image-led carousel: one cinematic frame, with controls kept in view. */
+.hero.cinema-hero {
+  display: flex;
+  min-height: clamp(430px, 48vw, 570px);
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin: 0 clamp(12px, 3.2vw, 46px) 28px;
+  padding: 48px clamp(26px, 6vw, 84px) 88px;
+  border-radius: 8px;
+  background: #0e2039;
+  box-shadow: 0 22px 54px rgba(20,33,61,.17);
+}
+.hero.cinema-hero::before {
+  background: linear-gradient(90deg,rgba(8,22,41,.94) 0%,rgba(8,22,41,.78) 37%,rgba(8,22,41,.25) 74%,rgba(8,22,41,.12) 100%),linear-gradient(0deg,rgba(8,22,41,.64),transparent 64%);
+}
+.hero.cinema-hero::after { height: 26%; background: linear-gradient(0deg,rgba(7,17,32,.36),transparent); }
+.hero.cinema-hero .hero-backdrop { background-position: center 42%; transform: scale(1.015); }
+.hero.cinema-hero .cinema-hero-copy { width: min(720px,78%); max-width: 720px; margin: 0; padding: 0; }
+.hero.cinema-hero .hero-edition-line { width: min(100%,480px); margin-bottom: 19px; padding-bottom: 10px; font-size: 9px; }
+.hero.cinema-hero .cinema-hero-copy h1 { max-width: 700px; margin: 0 0 13px; font-size: clamp(32px,3.8vw,48px); line-height: 1.04; letter-spacing: -.035em; }
+.hero.cinema-hero .hero-meta { gap: 7px; font-size: 10px; }
+.hero.cinema-hero .hero-meta > span:not(.rating):not(.tag) { padding: 5px 8px; }
+.hero.cinema-hero .hero-meta .rating { min-height: 28px; padding: 0 9px; }
+.hero.cinema-hero .hero-meta .tag { padding: 5px 8px; }
+.hero.cinema-hero .hero-description { display: -webkit-box; max-width: 440px; overflow: hidden; margin: 13px 0 17px; font-size: 12px; line-height: 1.65; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+.hero.cinema-hero .hero-buttons { gap: 8px 17px; }
+.hero.cinema-hero .hero-buttons .button-blue { min-height: 42px; padding: 0 15px; }
+.hero-poster-panel { display: none; }
+.hero.cinema-hero .hero-foot { right: clamp(26px,6vw,84px); bottom: 21px; left: clamp(26px,6vw,84px); gap: 14px; padding-top: 12px; font-size: 8px; }
+.hero.cinema-hero .slider-dots { gap: 5px; }
+.hero.cinema-hero .slider-dots .dot { width: 10px; height: 3px; }
+.hero.cinema-hero .slider-dots .dot.active { width: 26px; }
+.hero.cinema-hero .slider-arrows button { width: 32px; height: 32px; }
+.hero.cinema-hero .slider-arrows button:focus-visible,
+.hero.cinema-hero .slider-dots .dot:focus-visible { outline: 2px solid #f1d79c; outline-offset: 3px; }
+
+@media (max-width: 680px) {
+  .hero.cinema-hero { min-height: 520px; margin: 0 10px 20px; padding: 205px 21px 82px; border-radius: 6px; }
+  .hero.cinema-hero::before { background: linear-gradient(0deg,rgba(8,22,41,.97) 0%,rgba(8,22,41,.82) 40%,rgba(8,22,41,.24) 100%); }
+  .hero.cinema-hero .cinema-hero-copy { width: 100%; max-width: none; }
+  .hero.cinema-hero .hero-edition-line { width: 100%; margin-bottom: 14px; font-size: 8px; }
+  .hero.cinema-hero .cinema-hero-copy h1 { max-width: 100%; font-size: clamp(30px,7.6vw,38px); }
+  .hero.cinema-hero .hero-description { max-width: 38em; margin: 12px 0 16px; font-size: 11px; }
+  .hero.cinema-hero .hero-foot { right: 21px; bottom: 16px; left: 21px; gap: 8px; }
+  .hero.cinema-hero .hero-foot > span { display: none; }
+  .hero.cinema-hero .slider-dots { flex: 1; max-width: calc(100% - 78px); }
+  .hero.cinema-hero .slider-arrows { gap: 5px; }
+  .hero.cinema-hero .slider-arrows button { width: 29px; height: 29px; }
+}
+@media (max-width: 390px) {
+  .hero.cinema-hero { min-height: 500px; padding-right: 17px; padding-left: 17px; }
+  .hero.cinema-hero .hero-foot { right: 17px; left: 17px; }
+  .hero.cinema-hero .cinema-hero-copy h1 { font-size: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero.cinema-hero .hero-backdrop { transform: none; }
+}
+.route-loading { display: grid; min-height: 100vh; place-content: center; background: #f4f7fb; color: #315f89; font: 500 14px 'DM Sans',Arial,sans-serif; }
+
+.app-shell .booking-step.is-current { position: relative; color: #173454; }
+.app-shell .booking-step.is-current::after { position: absolute; right: 12px; bottom: -1px; left: 12px; height: 2px; background: #c6a467; content: ''; }
+.app-shell .booking-stage { animation: booking-stage-in 360ms var(--motion-ease) both; }
+@keyframes booking-stage-in { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+.app-shell .screening-layout { grid-template-columns: minmax(0,1fr); }
+.app-shell .screening-continue-bar { position: sticky; z-index: 4; bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 8px 0 4px; padding: 13px 16px; border: 1px solid rgba(255,255,255,.5); border-radius: 8px; background: rgba(255,255,255,.94); box-shadow: 0 12px 32px rgba(20,33,61,.16); backdrop-filter: blur(14px); }
+.app-shell .screening-continue-copy { display: grid; min-width: 0; gap: 3px; }
+.app-shell .screening-continue-copy b { overflow: hidden; color: #203b5b; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.app-shell .screening-continue-copy small { color: #7d8a9a; font-size: 10px; }
+.app-shell .screening-continue-bar .button { min-height: 43px; flex: 0 0 auto; border-radius: 5px; font-size: 11px; }
+.app-shell .screening-continue-bar .button:disabled { box-shadow: none; }
+.app-shell .screen-experience-picker { margin: 19px 0 8px; padding: 18px; border: 1px solid var(--surface-border); border-radius: 8px; background: linear-gradient(140deg,#fff,#f5f8fb); }
+.app-shell .screen-experience-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 13px; }
+.app-shell .screen-experience-heading h2 { margin: 5px 0 0; color: #173454; font: 500 22px/1.15 'Playfair Display',Georgia,serif; }
+.app-shell .screen-experience-heading p { margin: 0 0 2px; color: #8793a2; font-size: 10px; }
+.app-shell .screen-experience-options { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.app-shell .screen-experience-option { position: relative; display: grid; min-height: 90px; grid-template-columns: 34px minmax(0,1fr) auto; grid-template-rows: 1fr; align-items: center; gap: 10px; padding: 14px; border: 1px solid #dce5ef; border-radius: 7px; background: #fff; color: #203b5b; text-align: left; transition: border-color var(--motion-ui),background var(--motion-ui),box-shadow var(--motion-ui),transform var(--motion-ui); }
+.app-shell .screen-experience-option:hover { transform: translateY(-2px); border-color: #9eb2c7; box-shadow: 0 8px 18px rgba(20,33,61,.07); }
+.app-shell .screen-experience-option.selected { border-color: #315f89; background: #f0f6fb; box-shadow: inset 0 0 0 1px #315f89,0 8px 18px rgba(20,33,61,.06); }
+.app-shell .screen-option-icon { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: #edf3f9; color: #315f89; }
+.app-shell .screen-experience-option.selected .screen-option-icon { background: #173454; color: #fff; }
+.app-shell .screen-option-copy { display: grid; min-width: 0; gap: 4px; }
+.app-shell .screen-option-copy b { overflow: hidden; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.app-shell .screen-option-copy small { color: #8491a0; font-size: 9px; }
+.app-shell .screen-experience-option > strong { align-self: end; color: #173454; font-size: 12px; white-space: nowrap; }
+.app-shell .screen-experience-option > strong small { display: block; margin-top: 2px; color: #8895a4; font-size: 8px; font-weight: 400; text-align: right; }
+.app-shell .screen-option-check { position: absolute; top: 8px; right: 8px; display: none; width: 19px; height: 19px; place-items: center; border-radius: 50%; background: #173454; color: #fff; }
+.app-shell .screen-experience-option.selected .screen-option-check { display: grid; }
+.app-shell .screen-experience-option:focus-visible { outline: 3px solid #86b5e4; outline-offset: 3px; }
+.app-shell .seat-stage-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 16px; padding: 19px 22px; border: 1px solid var(--surface-border); border-radius: 8px; background: linear-gradient(120deg,#fff,#f1f6fb); box-shadow: 0 8px 22px rgba(20,33,61,.045); }
+.app-shell .seat-stage-heading h2 { margin: 5px 0 4px; color: #173454; font: 500 clamp(22px,3vw,30px)/1.12 'Playfair Display',Georgia,serif; }
+.app-shell .seat-stage-heading p { margin: 0; color: #748398; font-size: 11px; }
+.app-shell .change-screening-button { display: inline-flex; min-height: 38px; flex: 0 0 auto; align-items: center; gap: 7px; padding: 0 12px; border: 1px solid #d5e0ea; border-radius: 5px; background: #fff; color: #315f89; font-size: 10px; transition: border-color var(--motion-quick),background var(--motion-quick),transform var(--motion-quick); }
+.app-shell .change-screening-button:hover { transform: translateY(-1px); border-color: #315f89; background: #f4f8fb; }
+.app-shell .seat-stage .seat-card { position: static; max-width: 780px; margin: 0 auto; }
+.app-shell .seat-stage .screen-area { margin-top: 17px; }
+.app-shell .seat-stage .seat-map { max-width: 580px; padding: 20px clamp(12px,4vw,34px); }
+.app-shell .seat-stage .seat-row { gap: clamp(5px,1vw,10px); margin: 9px 0; }
+.app-shell .seat-stage .seat { min-height: 24px; }
+@media (max-width: 680px) {
+  .app-shell .screening-continue-bar { bottom: 8px; gap: 10px; margin-top: 12px; padding: 11px; }
+  .app-shell .screening-continue-copy b { max-width: 42vw; font-size: 11px; }
+  .app-shell .screening-continue-copy small { max-width: 42vw; font-size: 9px; }
+  .app-shell .screening-continue-bar .button { min-height: 40px; padding: 0 11px; font-size: 10px; }
+  .app-shell .screen-experience-picker { margin-top: 14px; padding: 13px; }
+  .app-shell .screen-experience-heading { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .app-shell .screen-experience-heading h2 { font-size: 20px; }
+  .app-shell .screen-experience-options { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 9px; scroll-snap-type: x mandatory; }
+  .app-shell .screen-experience-option { flex: 0 0 min(74vw,235px); min-height: 82px; scroll-snap-align: start; }
+  .app-shell .seat-stage-heading { align-items: flex-start; flex-direction: column; padding: 15px; }
+  .app-shell .change-screening-button { min-height: 36px; }
+  .app-shell .seat-stage .seat-map { padding: 12px 6px; }
+  .app-shell .seat-stage .seat-row { gap: 3px; margin: 7px 0; }
+  .app-shell .seat-stage .seat { min-height: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .booking-stage { animation: none; }
+  .app-shell .change-screening-button:hover { transform: none; }
+}
